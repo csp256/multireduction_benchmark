@@ -3,7 +3,7 @@ CC=g++-4.9
 NVCC=nvcc
 ARCH=sm_30
 INC=-I/usr/local/cuda/include/
-NVCCFLAGS=-Wall -Wextra -Werror -Wshadow -Ofast -mavx2 -mfma
+NVCCFLAGS=-Wall -Wextra -Werror -Wshadow -Ofast -mavx2 -mfma -Xcompiler -mno-mwaitx
 CFLAGS=-Wall -Wextra -Werror -pedantic -Wshadow -Ofast -std=gnu++14 -mavx2 -fomit-frame-pointer -mavx2 -mfma -flto
 CCLIBS=
 LDFLAGS=-Wall -Wextra -Werror -pedantic -Wshadow -Ofast -std=gnu++14 -mavx2 -fomit-frame-pointer -mavx2 -mfma -flto
