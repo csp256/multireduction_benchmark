@@ -3,8 +3,8 @@ CC=g++-4.9
 NVCC=nvcc
 ARCH=sm_30
 INC=-I/usr/local/cuda/include/
-NVCCFLAGS=-Wall -Wextra -Werror -Wshadow -Ofast -mavx2 -mfma -Xcompiler -mno-mwaitx
-CFLAGS=-Wall -Wextra -Werror -pedantic -Wshadow -Ofast -std=gnu++14 -mavx2 -fomit-frame-pointer -mavx2 -mfma -flto
+NVCCFLAGS=-Wall -Wextra -Werror -Wshadow -Ofast -mavx2 -mfma
+CFLAGS=-Wall -Wextra -Werror -pedantic -Wshadow -Ofast -std=gnu++14 -mavx2 -fomit-frame-pointer -mavx2 -mfma -flto -D_FORCE_INLINES
 CCLIBS=
 LDFLAGS=-Wall -Wextra -Werror -pedantic -Wshadow -Ofast -std=gnu++14 -mavx2 -fomit-frame-pointer -mavx2 -mfma -flto
 LIBS=-L/usr/local/cuda/lib64 -lcudart -lpthread
@@ -26,7 +26,7 @@ $(EXECUTABLE_NAME) : $(OBJECTS)
 
 #--use_fast_math
 %.o:%.cu
-	$(NVCC) -arch=$(ARCH) -lineinfo -ccbin g++-4.9 -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
+	$(NVCC) -Xcompiler -mno-mwaitx -arch=$(ARCH) -lineinfo -ccbin g++-4.9 -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
 
 
 clean:
