@@ -26,7 +26,7 @@ $(EXECUTABLE_NAME) : $(OBJECTS)
 
 #--use_fast_math
 %.o:%.cu
-	$(NVCC) -Xcompiler -mno-mwaitx -arch=$(ARCH) -lineinfo -ccbin g++-4.9 -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
+	$(NVCC) -Xcompiler  -arch=$(ARCH) -lineinfo -ccbin g++-4.9 -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
 
 
 clean:
