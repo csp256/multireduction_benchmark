@@ -21,12 +21,12 @@ $(EXECUTABLE_NAME) : $(OBJECTS)
 %.o:%.cpp
 	$(CC) -c $(INC) $(CFLAGS) $< -o $@
 
-#%.o:%.cu
-#	$(NVCC) --use_fast_math -arch=$(ARCH) -O3 -ccbin $(CC) -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
-
-#--use_fast_math
 %.o:%.cu
-	$(NVCC)  -arch=$(ARCH) -lineinfo -ccbin g++-4.9 -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
+	$(NVCC) --use_fast_math -arch=$(ARCH) -O3 -ccbin $(CC) -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
+
+# #--use_fast_math
+# %.o:%.cu
+# 	$(NVCC)  -arch=$(ARCH) -lineinfo -ccbin g++-4.9 -std=c++11 -c $(INC) -Xcompiler "$(NVCCFLAGS)" $< -o $@
 
 
 clean:
